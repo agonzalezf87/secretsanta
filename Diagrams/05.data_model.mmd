@@ -1,0 +1,67 @@
+classDiagram
+  class Group {
+    +id UUID
+    +name string
+    +budget number
+    +exchangeAt datetime
+    +timezone string
+    +revealMode enum
+    +createdBy UUID
+  }
+
+  class Participant {
+    +id UUID
+    +groupId UUID
+    +name string
+    +email string
+    +status enum   // invited|joined|confirmed|withdrawn
+    +address json? // optional for shipping
+  }
+
+  class Exclusion {
+    +id UUID
+    +groupId UUID
+    +aId UUID
+    +bId UUID
+    // cannot pair a<->b
+  }
+
+  class Assignment {
+    +id UUID
+    +groupId UUID
+    +santaId UUID
+    +recipientId UUID
+    +createdAt datetime
+  }
+
+  class WishlistItem {
+    +id UUID
+    +participantId UUID
+    +title string
+    +url string?
+    +notes string?
+    +price number?
+  }
+
+  class MessageThread {
+    +id UUID
+    +groupId UUID
+    +santaId UUID
+    +recipientId UUID
+    +createdAt datetime
+  }
+
+  class Message {
+    +id UUID
+    +threadId UUID
+    +fromRole enum  // SANTA or RECIPIENT
+    +text string
+    +createdAt datetime
+  }
+
+  Group "1" -- "many" Participant : has
+  Group "1" -- "many" Exclusion : rules
+  Group "1" -- "many" Assignment : results
+  Participant "1" -- "many" WishlistItem : owns
+  Assignment "1" -- "1" MessageThread : optional
+  MessageThread "1" -- "many" Message : contains

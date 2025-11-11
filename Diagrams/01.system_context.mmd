@@ -1,0 +1,31 @@
+flowchart LR
+  subgraph Client
+    U[Participant]
+    O[Organizer]
+  end
+
+  subgraph WebApp
+    FE[Frontend SPA]
+    API[Backend API]
+    JOB[Worker/Jobs]
+  end
+
+  subgraph Services
+    DB[(Postgres/SQL)]
+    QUEUE[(Queue)]
+    MAIL[Email/SMS]
+    STORE[(Object Storage)]
+    AUTH["Auth (OIDC/Magic link)"]
+  end
+
+  U <--> FE
+  O <--> FE
+  FE <--> API
+  API <--> DB
+  API <--> AUTH
+  API --> MAIL
+  API --> STORE
+  API --> QUEUE
+  QUEUE --> JOB
+  JOB --> MAIL
+  JOB --> DB`

@@ -1,0 +1,15 @@
+sequenceDiagram
+  participant S as Santa (giver)
+  participant FE as Frontend
+  participant API as API
+  participant DB as DB
+  participant R as Recipient
+  Note over S,R: Anonymity preserved via conversation token/channel
+
+  S->>FE: Send anonymous question
+  FE->>API: POST /messages {groupId, threadId, text}
+  API->>DB: Store message (senderId hidden from R)
+  API-->>R: Notify (email/push) via relay
+  R->>FE: Reply anonymously
+  FE->>API: POST /messages {threadId, text}
+  API->>DB: Store reply & relay to S

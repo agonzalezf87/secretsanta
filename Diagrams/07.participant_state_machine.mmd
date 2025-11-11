@@ -1,0 +1,9 @@
+stateDiagram-v2
+  [*] --> Invited
+  Invited --> Joined: accepts invite
+  Joined --> Confirmed: fills wishlist & profile
+  Joined --> Withdrawn: leaves group
+  Confirmed --> Assigned: after draw
+  Assigned --> GiftShipped: marks gift sent
+  GiftShipped --> Delivered: recipient confirms
+  Delivered --> Revealed: event day (optional)

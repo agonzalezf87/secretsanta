@@ -1,0 +1,9 @@
+flowchart TD
+  S[Start draw] --> L[Build candidate graph (participants)]
+  L --> X[Load exclusion rules (self, couples, past years)]
+  X --> M[Generate random permutation]
+  M --> C{Any conflict?}
+  C -- Yes --> R[Repair / Re-roll conflicted edges only]
+  R --> C
+  C -- No --> O[Persist assignments]
+  O --> N[Emit notifications]
