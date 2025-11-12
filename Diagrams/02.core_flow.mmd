@@ -1,12 +1,12 @@
 flowchart TD
-  A[Create Group (name, budget, date, timezone)] --> B[Invite participants (link/email)]
+  A["Create Group (name, budget, date, timezone)"] --> B["Invite participants (link/email)"]
   B --> C[Join + Profile + Wishlist]
-  C --> D[Define exclusions (couples, past pairings)]
+  C --> D["Define exclusions (couples, past pairings)"]
   D --> E{All ready?}
   E -- No --> C
-  E -- Yes --> F[Run Assignment (draw)]
-  F --> G[Notify each Santa (recipient + wishlist link)]
+  E -- Yes --> F["Run Assignment (draw)"]
+  F --> G["Notify each Santa (recipient + wishlist link)"]
   G --> H[Anonymous Q&A / Reminders]
   H --> I[Gift purchase & delivery status]
-  I --> J[Event day: reveal (optional)]
+  I --> J["Event day: reveal (optional)"]
   J --> K[Archive group & export history]
